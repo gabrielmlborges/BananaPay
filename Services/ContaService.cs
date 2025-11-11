@@ -16,8 +16,10 @@ public class ContaService
     // ✅ Single Responsibility (SOLID: S)
     public Conta? CriarConta(string nome, string cpf, string senha)
     {
-        if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(senha))
-            return null;
+        if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(senha)) return null;
+
+        bool jaExiste = _context.Contas.Any(c => c.CpfDono == cpf);
+        if (jaExiste) return null;
 
         var conta = new Conta
         {
@@ -37,7 +39,7 @@ public class ContaService
     {
         if (string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(senha)) return false;
 
-        var cliente = _context.Clientes.FirstOrDefault(c => c.CpfDono == cpf);
+        var cliente = _context.Contas.FirstOrDefault(c => c.CpfDono == cpf);
 
         return cliente != null && cliente.Senha == senha;
     }

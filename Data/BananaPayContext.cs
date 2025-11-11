@@ -17,6 +17,12 @@ public class BananaPayContext : DbContext
         DbPath = System.IO.Path.Join(path, "BananaPay.db");
     }
 
+    protected override void OnModelCreating(ModelBuilder b)
+    {
+        b.Entity<Conta>()
+            .HasIndex(c => c.CpfDono)
+            .IsUnique();
+    }
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite($"Data Source={DbPath}");
 }
