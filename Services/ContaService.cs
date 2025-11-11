@@ -32,4 +32,13 @@ public class ContaService
 
         return conta;
     }
+
+    public bool VerificarLogin(string cpf, string senha)
+    {
+        if (string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(senha)) return false;
+
+        var cliente = _context.Clientes.FirstOrDefault(c => c.CpfDono == cpf);
+
+        return cliente != null && cliente.Senha == senha;
+    }
 }
