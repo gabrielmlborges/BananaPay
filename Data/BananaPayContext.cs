@@ -19,10 +19,33 @@ public class BananaPayContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder b)
     {
+        // índice CPF
         b.Entity<Conta>()
             .HasIndex(c => c.CpfDono)
             .IsUnique();
+
+        // TPH + discriminadores
+        b.Entity<Transacao>()
+            .UseTphMappingStrategy()
+            .HasDiscriminator<string>("Tipo")
+            .HasValue<Saque>("Saque")
+            .HasValue<Deposito>("Deposito")
+            .HasValue<Transferencia>("Transferencia");
+
+        // FKs duplas da Transferencia
+        b.Entity<Transferencia>()
+            .HasOne(t => t.Conta)
+            .WithMany()
+            .HasForeignKey(t => t.ContaId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        b.Entity<Transferencia>()
+            .HasOne(t => t.ContaDestino)
+            .WithMany()
+            .HasForeignKey(t => t.ContaDestinoId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
+
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite($"Data Source={DbPath}");
 }
