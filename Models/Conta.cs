@@ -15,9 +15,9 @@ public class Conta
 
     public Conta(string NomeDono, string CpfDono, string Senha)
     {
-        this.NomeDono = NomeDono,
-        this.CpfDono = CpfDono,
-        this.Senha = Senha
+        this.NomeDono = NomeDono;
+        this.CpfDono = CpfDono;
+        this.Senha = Senha;
     }
 
     public bool Creditar(decimal valor)
