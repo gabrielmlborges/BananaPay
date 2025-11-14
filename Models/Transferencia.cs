@@ -4,6 +4,7 @@ public class Transferencia : Transacao
 {
     public int ContaDestinoId { get; set; }
     public Conta ContaDestino { get; set; }
+    public override string Tipo { get; set; } = "Transferencia";
 
     protected Transferencia() { }
 
@@ -12,5 +13,5 @@ public class Transferencia : Transacao
         ContaDestinoId = contaDestino;
     }
 
-    public override string Tipo => "Transferencia";
+
 }

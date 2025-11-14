@@ -7,6 +7,7 @@ public class BananaPayContext : DbContext
 {
     public DbSet<Conta> Contas { get; set; }
     public DbSet<Transacao> Transacoes { get; set; }
+    public DbSet<Cliente> Clientes { get; set; }
 
     public string DbPath { get; }
 
@@ -21,7 +22,7 @@ public class BananaPayContext : DbContext
     {
         // índice CPF
         b.Entity<Conta>()
-            .HasIndex(c => c.CpfDono)
+            .HasIndex(c => c.ClienteID)
             .IsUnique();
 
         // TPH + discriminadores

@@ -6,18 +6,17 @@ public class Conta
 {
     public int ContaId { get; set; }
     public decimal Saldo { get; private set; } = 0;
-    public string NomeDono { get; set; }
-    public string CpfDono { get; set; }
-    public string Senha { get; set; }
+    public int ClienteID { get; set; }
+    public Cliente Cliente { get; set; }
+
     public List<Transacao> Transacoes { get; } = new();
 
     protected Conta() { }
 
-    public Conta(string NomeDono, string CpfDono, string Senha)
+    public Conta(Cliente cliente, int clienteId)
     {
-        this.NomeDono = NomeDono;
-        this.CpfDono = CpfDono;
-        this.Senha = Senha;
+        Cliente = cliente;
+        ClienteID = clienteId;
     }
 
     public bool Creditar(decimal valor)

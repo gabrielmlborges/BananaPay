@@ -3,6 +3,7 @@ using System;
 using BananaPay.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,32 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BananaPay.Migrations
 {
     [DbContext(typeof(BananaPayContext))]
-    partial class BananaPayContextModelSnapshot : ModelSnapshot
+    [Migration("20251114152800_addCliente")]
+    partial class addCliente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
-
-            modelBuilder.Entity("BananaPay.Models.Cliente", b =>
-                {
-                    b.Property<int>("ClienteID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CpfDono")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NomeDono")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Senha")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ClienteID");
-
-                    b.ToTable("Clientes");
-                });
 
             modelBuilder.Entity("BananaPay.Models.Conta", b =>
                 {
@@ -43,15 +26,24 @@ namespace BananaPay.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ClienteID")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("CpfDono")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NomeDono")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("Saldo")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("ContaId");
 
-                    b.HasIndex("ClienteID")
+                    b.HasIndex("CpfDono")
                         .IsUnique();
 
                     b.ToTable("Contas");
@@ -117,17 +109,6 @@ namespace BananaPay.Migrations
                     b.HasIndex("ContaDestinoId");
 
                     b.HasDiscriminator().HasValue("Transferencia");
-                });
-
-            modelBuilder.Entity("BananaPay.Models.Conta", b =>
-                {
-                    b.HasOne("BananaPay.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("BananaPay.Models.Transacao", b =>
