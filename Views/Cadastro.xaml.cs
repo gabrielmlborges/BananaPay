@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BananaPay.Data;
 
 namespace BananaPay.View
 {
@@ -19,6 +20,8 @@ namespace BananaPay.View
     /// </summary>
     public partial class Cadastro : Window
     {
+        private readonly ContaService _service = new(new BananaPayContext());
+
         public Cadastro()
         {
             InitializeComponent();
@@ -26,9 +29,17 @@ namespace BananaPay.View
 
         private void BotaoIrLogin_Click(object sender, RoutedEventArgs e)
         {
-            Login login = new Login();
+            Login login = new();
             login.Show();
             this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string nome = CaixaEmailCadastro.Text;
+            string cpf = CaixaCPFCadastro.Text;
+            string senha = CaixaSenhaCadastro.Text;
+            _service.CriarConta(nome, cpf, senha);
         }
     }
 }
