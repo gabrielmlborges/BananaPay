@@ -9,7 +9,7 @@ public class Conta
     public string Senha { get; set; } = default!;
     public List<Transacao> Transacoes { get; } = [];
 
-    private Conta() { }
+    public Conta() { }
 
     public Conta(string nome, string cpf, string senha)
     {

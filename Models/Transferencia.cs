@@ -5,7 +5,7 @@ public class Transferencia(decimal valor, int contaId, int destinoId) : Transaca
     public int ContaDestinoId { get; set; } = destinoId;
     public Conta ContaDestino { get; set; } = default!;
 
-    private Transferencia() : this(0, 0, 0) { }
+    public Transferencia() : this(0, 0, 0) { }
 
     public override string Tipo => "Transferencia";
 }

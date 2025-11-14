@@ -9,7 +9,7 @@ public abstract class Transacao
     public Conta Conta { get; set; } = default!;
     public abstract string Tipo { get; }
 
-    private Transacao() { }
+    public Transacao() { }
 
     public Transacao(decimal Valor, int ContaId)
     {
