@@ -11,7 +11,7 @@ public class Conta
     public string Senha { get; set; }
     public List<Transacao> Transacoes { get; } = new();
 
-    protected Conta() { }
+    public Conta() { }
 
     public Conta(string NomeDono, string CpfDono, string Senha)
     {
