@@ -26,8 +26,8 @@ namespace BananaPay.View
 
         private void BotaoIrLogin_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
-            main.Show();
+            Login login = new Login();
+            login.Show();
             this.Close();
         }
     }

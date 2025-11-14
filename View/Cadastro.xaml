@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BananaPay.View"
         mc:Ignorable="d"
-        Title="Cadastro" Height="450" Width="800">
+        Title="Cadastro" Height="450" Width="812">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -67,8 +67,13 @@
         <Border x:Name="LoginCanto" BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left" Height="434" Margin="560,0,0,0" VerticalAlignment="Center" Width="240" Background="#FF45EA93">
             <Button Style="{DynamicResource BotaoArrendondado}" x:Name="BotaoIrLogin" Content="Login" HorizontalAlignment="Center" Height="40" Margin="0,248,0,0" VerticalAlignment="Top" Width="134" Background="#FF45EA93" Click="BotaoIrLogin_Click" Foreground="White" FontWeight="Bold" FontSize="16"/>
         </Border>
-        <Label Content="Logar-se" Margin="627,97,0,0" RenderTransformOrigin="0.28,0.492" Foreground="White" FontSize="24" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
-        <Label Content="Ja possui uma conta com a gente?" Margin="569,175,0,0" RenderTransformOrigin="0.28,0.492" Foreground="White" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="Logar-se" Margin="627,124,0,0" RenderTransformOrigin="0.28,0.492" Foreground="White" FontSize="24" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+        <Label Content="Ja possui uma conta com a gente?" Margin="569,188,0,0" RenderTransformOrigin="0.28,0.492" Foreground="White" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="Crie sua conta" HorizontalAlignment="Left" Height="42" Margin="188,65,0,0" VerticalAlignment="Top" Width="178" Foreground="#FF45EA93" FontWeight="Bold" FontSize="24"/>
+        <TextBox x:Name="CaixaCPFCadastro" HorizontalAlignment="Left" Height="33" Margin="178,124,0,0" TextWrapping="Wrap" Text="CPF" VerticalAlignment="Top" Width="198"/>
+        <TextBox x:Name="CaixaEmailCadastro" HorizontalAlignment="Left" Height="33" Margin="178,169,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="198"/>
+        <TextBox x:Name="CaixaSenhaCadastro" HorizontalAlignment="Left" Height="33" Margin="178,217,0,0" TextWrapping="Wrap" Text="Senha" VerticalAlignment="Top" Width="198"/>
+        <Button Content="Cadastrar" HorizontalAlignment="Left" Height="49" Margin="211,289,0,0" VerticalAlignment="Top" Width="132" Style="{DynamicResource BotaoArrendondado}" Background="#FF45EA93" Foreground="White" BorderBrush="White" FontWeight="Bold" FontSize="18"/>
 
     </Grid>
 </Window>
