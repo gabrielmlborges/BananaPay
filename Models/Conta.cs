@@ -1,23 +1,21 @@
-using System.Collections.Generic;
-
 namespace BananaPay.Models;
 
 public class Conta
 {
     public int ContaId { get; set; }
     public decimal Saldo { get; private set; } = 0;
-    public string NomeDono { get; set; }
-    public string CpfDono { get; set; }
-    public string Senha { get; set; }
-    public List<Transacao> Transacoes { get; } = new();
+    public string NomeDono { get; set; } = default!;
+    public string CpfDono { get; set; } = default!;
+    public string Senha { get; set; } = default!;
+    public List<Transacao> Transacoes { get; } = [];
 
-    protected Conta() { }
+    private Conta() { }
 
-    public Conta(string NomeDono, string CpfDono, string Senha)
+    public Conta(string nome, string cpf, string senha)
     {
-        this.NomeDono = NomeDono;
-        this.CpfDono = CpfDono;
-        this.Senha = Senha;
+        NomeDono = nome;
+        CpfDono = cpf;
+        Senha = senha;
     }
 
     public bool Creditar(decimal valor)

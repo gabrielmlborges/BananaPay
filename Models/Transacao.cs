@@ -6,10 +6,10 @@ public abstract class Transacao
     public decimal Valor { get; set; }
     public DateTime DataHora { get; set; } = DateTime.Now;
     public int ContaId { get; set; }
-    public Conta Conta { get; set; }
+    public Conta Conta { get; set; } = default!;
     public abstract string Tipo { get; }
 
-    protected Transacao() { }
+    private Transacao() { }
 
     public Transacao(decimal Valor, int ContaId)
     {

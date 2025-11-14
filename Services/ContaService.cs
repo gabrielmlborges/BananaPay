@@ -3,15 +3,10 @@ using BananaPay.Models;
 
 namespace BananaPay.Services;
 
-public class ContaService
+public class ContaService(BananaPayContext context)
 {
-    private readonly BananaPayContext _context;
-
     // ✅ Dependency Injection (SOLID: D)
-    public ContaService(BananaPayContext context)
-    {
-        _context = context;
-    }
+    private readonly BananaPayContext _context = context;
 
     // ✅ Single Responsibility (SOLID: S)
     public Conta? CriarConta(string nome, string cpf, string senha)
@@ -21,12 +16,7 @@ public class ContaService
         bool jaExiste = _context.Contas.Any(c => c.CpfDono == cpf);
         if (jaExiste) return null;
 
-        var conta = new Conta
-        {
-            NomeDono = nome,
-            CpfDono = cpf,
-            Senha = senha
-        };
+        var conta = new Conta(nome, cpf, senha);
 
         _context.Contas.Add(conta);
 
@@ -42,5 +32,49 @@ public class ContaService
         var cliente = _context.Contas.FirstOrDefault(c => c.CpfDono == cpf);
 
         return cliente != null && cliente.Senha == senha;
+    }
+
+    public void Sacar(decimal valor, string cpf)
+    {
+        var conta = _context.Contas.FirstOrDefault(c => c.CpfDono == cpf);
+        
+        if (conta == null) return;
+
+        conta.Debitar(valor);
+
+        conta.Registrar(new Saque(valor, conta.ContaId));
+
+        _context.SaveChanges();
+
+    }
+
+    public void Depositar(decimal valor, string cpf)
+    {
+        var conta = _context.Contas.FirstOrDefault(c => c.CpfDono == cpf);
+
+        if (conta == null) return;
+
+        conta.Creditar(valor);
+
+        conta.Registrar(new Deposito(valor, conta.ContaId));
+
+        _context.SaveChanges();
+    }
+
+    public void Transferir(decimal valor, string cpfDono, string cpfDestino)
+    {
+        var contaDono = _context.Contas.FirstOrDefault(c => c.CpfDono == cpfDono);
+        var contaDestino = _context.Contas.FirstOrDefault(c => c.CpfDono == cpfDestino);
+
+        if (contaDono == null) return;
+        if (contaDestino == null) return;
+
+        contaDono.Debitar(valor);
+        contaDestino.Creditar(valor);
+
+        contaDono.Registrar(new Transferencia(valor, contaDono.ContaId, contaDestino.ContaId));
+
+        _context.SaveChanges();
+
     }
 }

@@ -1,6 +1,7 @@
 namespace BananaPay.Models;
 
-public class Saque : Transacao
+public class Saque(decimal valor, int contaId) : Transacao(valor, contaId)
 {
-    public override string Tipo() => "Saque";
+    private Saque() : this(0, 0) { }
+    public override string Tipo => "Saque";
 }

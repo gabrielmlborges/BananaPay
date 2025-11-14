@@ -1,16 +1,11 @@
 namespace BananaPay.Models;
 
-public class Transferencia : Transacao
+public class Transferencia(decimal valor, int contaId, int destinoId) : Transacao(valor, contaId)
 {
-    public int ContaDestinoId { get; set; }
-    public Conta ContaDestino { get; set; }
+    public int ContaDestinoId { get; set; } = destinoId;
+    public Conta ContaDestino { get; set; } = default!;
 
-    protected Transferencia() { }
-
-    public Transferencia(decimal v, int contaOrigem, int contaDestino) : base(v, contaOrigem)
-    {
-        ContaDestinoId = contaDestino;
-    }
+    private Transferencia() : this(0, 0, 0) { }
 
     public override string Tipo => "Transferencia";
 }
