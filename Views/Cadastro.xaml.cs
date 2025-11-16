@@ -32,7 +32,7 @@ namespace BananaPay.View
         {
             Login login = new();
             login.Show();
-            this.Close();
+            Close();
         }
 
         private void BotaoCadastrar_Click(object sender, RoutedEventArgs e)

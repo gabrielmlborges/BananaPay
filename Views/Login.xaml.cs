@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 using BananaPay.Data;
 using BananaPay.Services;
 
-namespace BananaPay.Views
+namespace BananaPay
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
