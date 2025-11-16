@@ -73,7 +73,7 @@
         <TextBox x:Name="CaixaCPFCadastro" HorizontalAlignment="Left" Height="33" Margin="178,124,0,0" TextWrapping="Wrap" Text="CPF" VerticalAlignment="Top" Width="198"/>
         <TextBox x:Name="CaixaEmailCadastro" HorizontalAlignment="Left" Height="33" Margin="178,169,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="198"/>
         <TextBox x:Name="CaixaSenhaCadastro" HorizontalAlignment="Left" Height="33" Margin="178,217,0,0" TextWrapping="Wrap" Text="Senha" VerticalAlignment="Top" Width="198"/>
-        <Button Content="Cadastrar" HorizontalAlignment="Left" Height="49" Margin="211,289,0,0" VerticalAlignment="Top" Width="132" Style="{DynamicResource BotaoArrendondado}" Background="#FF45EA93" Foreground="White" BorderBrush="White" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="BotaoCadastrar" Content="Cadastrar" HorizontalAlignment="Left" Height="49" Margin="211,289,0,0" VerticalAlignment="Top" Width="132" Style="{DynamicResource BotaoArrendondado}" Background="#FF45EA93" Click="BotaoCadastrar_Click" Foreground="White" BorderBrush="White" FontWeight="Bold" FontSize="18"/>
 
     </Grid>
 </Window>

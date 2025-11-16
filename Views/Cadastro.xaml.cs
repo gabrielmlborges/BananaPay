@@ -35,7 +35,7 @@ namespace BananaPay.View
             this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BotaoCadastrar_Click(object sender, RoutedEventArgs e)
         {
             string nome = CaixaEmailCadastro.Text;
             string cpf = CaixaCPFCadastro.Text;
