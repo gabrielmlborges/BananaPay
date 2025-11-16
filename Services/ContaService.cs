@@ -9,12 +9,12 @@ public class ContaService(BananaPayContext context)
     private readonly BananaPayContext _context = context;
 
     // ✅ Single Responsibility (SOLID: S)
-    public Conta? CriarConta(string nome, string cpf, string senha)
+    public bool CriarConta(string nome, string cpf, string senha)
     {
-        if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(senha)) return null;
+        if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(senha)) return false;
 
         bool jaExiste = _context.Contas.Any(c => c.CpfDono == cpf);
-        if (jaExiste) return null;
+        if (jaExiste) return false;
 
         var conta = new Conta(nome, cpf, senha);
 
@@ -22,7 +22,7 @@ public class ContaService(BananaPayContext context)
 
         _context.SaveChanges();
 
-        return conta;
+        return false;
     }
 
     public bool VerificarLogin(string cpf, string senha)

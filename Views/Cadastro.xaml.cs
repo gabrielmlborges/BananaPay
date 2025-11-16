@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BananaPay.Data;
+using BananaPay.Services;
 
 namespace BananaPay.View
 {
@@ -39,7 +40,20 @@ namespace BananaPay.View
             string nome = CaixaEmailCadastro.Text;
             string cpf = CaixaCPFCadastro.Text;
             string senha = CaixaSenhaCadastro.Text;
-            _service.CriarConta(nome, cpf, senha);
+            if (_service.CriarConta(nome, cpf, senha)) {
+                MessageBox.Show(
+                        "Conta criada com sucesso!",
+                        "Aviso",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+            } else {
+                MessageBox.Show(
+                        "Erro ao tentar criar sua conta",
+                        "Aviso",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+            }
+
         }
     }
 }
