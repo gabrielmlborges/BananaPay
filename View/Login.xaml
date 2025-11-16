@@ -64,16 +64,16 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Border x:Name="CadastroCanto" BorderThickness="1" HorizontalAlignment="Left" Height="434" VerticalAlignment="Center" Width="224" Background="#FF45EA93">
-            <Button Style="{DynamicResource BotaoRedondo}" x:Name="BotaoIrCadastro" Content="Cadastrar" HorizontalAlignment="Center" Height="44" VerticalAlignment="Top" Width="132" Margin="0,248,0,0" Click="IrCadastro_Click" Background="#FF45EA93" Foreground="White" FontWeight="Bold" FontSize="16" RenderTransformOrigin="0.5,0.5" />
+        <Border x:Name="CadastroCanto" BorderThickness="1" HorizontalAlignment="Left" Height="434" VerticalAlignment="Center" Width="224" Background="#FF45EA93" BorderBrush="#FF45EA93">
+            <Button Style="{DynamicResource BotaoRedondo}" x:Name="BotaoIrCadastro" Content="Cadastrar" HorizontalAlignment="Center" Height="44" VerticalAlignment="Top" Width="132" Margin="0,248,0,0" Click="IrCadastro_Click" Background="#FF289A5E" Foreground="White" FontWeight="Bold" FontSize="16" RenderTransformOrigin="0.5,0.5" />
         </Border>
-        <Label Content="Faça parte do nosso banco e crie&#xA;&#x9;sua conta agora" Margin="6,178,0,0" RenderTransformOrigin="0.28,0.492" Foreground="White" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="Faça parte do nosso banco e crie&#xA;&#x9;sua conta agora" Margin="0,178,0,0" RenderTransformOrigin="0.28,0.492" Foreground="White" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
         <Label Content="Cadastre-se" Margin="42,124,0,0" RenderTransformOrigin="0.28,0.492" Foreground="White" FontSize="24" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
-        <Label Content="Entrar no banco" HorizontalAlignment="Left" Height="63" Margin="400,65,0,0" VerticalAlignment="Top" Width="196" Foreground="#FF45EA93" FontWeight="Bold" FontSize="24"/>
+        <Label Content="Entrar no banco" HorizontalAlignment="Left" Height="63" Margin="400,65,0,0" VerticalAlignment="Top" Width="196" Foreground="#FF289A5E" FontWeight="Bold" FontSize="24"/>
         <TextBox x:Name="CaixaLoginEmail" HorizontalAlignment="Left" Height="33" Margin="400,133,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="199"/>
         <TextBox x:Name="CaixaLoginSenha" HorizontalAlignment="Left" Height="33
                  " Margin="400,192,0,0" TextWrapping="Wrap" Text="senha" VerticalAlignment="Top" Width="199" Foreground="Black"/>
-        <Button x:Name="BotaoLogin" Content="Login" HorizontalAlignment="Left" Height="45" Margin="422,266,0,0" VerticalAlignment="Top" Width="156" Background="#FF45EA93" FontWeight="Bold" FontSize="20" Style="{DynamicResource BotaoRedondo}" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="BotaoLogin" Content="Login" HorizontalAlignment="Left" Height="45" Margin="422,266,0,0" VerticalAlignment="Top" Width="156" Background="#FF289A5E" FontWeight="Bold" FontSize="20" Style="{DynamicResource BotaoRedondo}" BorderBrush="White" Foreground="White"/>
 
     </Grid>
 </Window>
