@@ -22,7 +22,7 @@ public class ContaService(BananaPayContext context)
 
         _context.SaveChanges();
 
-        return false;
+        return true;
     }
 
     public bool VerificarLogin(string cpf, string senha)
