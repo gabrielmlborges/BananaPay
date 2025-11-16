@@ -1,0 +1,86 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace BananaPay.Migrations
+{
+    /// <inheritdoc />
+    public partial class Primeira : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "Contas",
+                columns: table => new
+                {
+                    ContaId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Saldo = table.Column<decimal>(type: "TEXT", nullable: false),
+                    NomeDono = table.Column<string>(type: "TEXT", nullable: false),
+                    CpfDono = table.Column<string>(type: "TEXT", nullable: false),
+                    Senha = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contas", x => x.ContaId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Transacao",
+                columns: table => new
+                {
+                    TransacaoId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Valor = table.Column<decimal>(type: "TEXT", nullable: false),
+                    DataHora = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ContaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Discriminator = table.Column<string>(type: "TEXT", maxLength: 13, nullable: false),
+                    ContaDestinoId = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transacao", x => x.TransacaoId);
+                    table.ForeignKey(
+                        name: "FK_Transacao_Contas_ContaDestinoId",
+                        column: x => x.ContaDestinoId,
+                        principalTable: "Contas",
+                        principalColumn: "ContaId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transacao_Contas_ContaId",
+                        column: x => x.ContaId,
+                        principalTable: "Contas",
+                        principalColumn: "ContaId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contas_CpfDono",
+                table: "Contas",
+                column: "CpfDono",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transacao_ContaDestinoId",
+                table: "Transacao",
+                column: "ContaDestinoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transacao_ContaId",
+                table: "Transacao",
+                column: "ContaId");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Transacao");
+
+            migrationBuilder.DropTable(
+                name: "Contas");
+        }
+    }
+}
