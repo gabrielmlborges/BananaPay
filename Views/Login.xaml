@@ -73,7 +73,7 @@
         <TextBox x:Name="CaixaLoginEmail" HorizontalAlignment="Left" Height="33" Margin="400,133,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="199"/>
         <TextBox x:Name="CaixaLoginSenha" HorizontalAlignment="Left" Height="33
                  " Margin="400,192,0,0" TextWrapping="Wrap" Text="senha" VerticalAlignment="Top" Width="199" Foreground="Black"/>
-        <Button x:Name="BotaoLogin" Content="Login" HorizontalAlignment="Left" Height="45" Margin="422,266,0,0" VerticalAlignment="Top" Width="156" Background="#FF45EA93" FontWeight="Bold" FontSize="20" Style="{DynamicResource BotaoRedondo}" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="BotaoLogin" Content="Login" HorizontalAlignment="Left" Height="45" Margin="422,266,0,0" VerticalAlignment="Top" Width="156" Background="#FF45EA93" FontWeight="Bold" FontSize="20" Style="{DynamicResource BotaoRedondo}" BorderBrush="White" Foreground="White" Clicl="BotaoLogin_Click"/>
 
     </Grid>
 </Window>

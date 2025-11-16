@@ -9,14 +9,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BananaPay.Data;
+using BananaPay.Services;
 
-namespace BananaPay
+namespace BananaPay.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class Login : Window
     {
+        private readonly ContaService _service = new(new BananaPayContext());
         public Login()
         {
             InitializeComponent();
@@ -24,9 +27,31 @@ namespace BananaPay
 
         private void IrCadastro_Click(object sender, RoutedEventArgs e)
         {
-            Cadastro cadastro = new Cadastro();
+            Cadastro cadastro = new();
             cadastro.Show();
-            this.Close();
+            Close();
+        }
+
+        private void BotaoLogin_Click(object sender, RoutedEventArgs e)
+        {
+            string cpf = CaixaLoginEmail.Text;
+            string senha = CaixaLoginSenha.Text;
+            bool deuCerto = _service.VerificarLogin(cpf, senha);
+            if (deuCerto)
+            {
+                MessageBox.Show(
+                        "Login realizado",
+                        "Login",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+            } else
+            {
+                MessageBox.Show(
+                        "Erro ao fazer login",
+                        "Login",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+            }
         }
     }
 }
