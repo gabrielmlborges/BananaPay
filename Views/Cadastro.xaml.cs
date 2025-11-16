@@ -40,7 +40,8 @@ namespace BananaPay.View
             string nome = CaixaEmailCadastro.Text;
             string cpf = CaixaCPFCadastro.Text;
             string senha = CaixaSenhaCadastro.Text;
-            if (_service.CriarConta(nome, cpf, senha)) {
+            bool deuCerto = _service.CriarConta(nome, cpf, senha);
+            if (deuCerto) {
                 MessageBox.Show(
                         "Conta criada com sucesso!",
                         "Aviso",
