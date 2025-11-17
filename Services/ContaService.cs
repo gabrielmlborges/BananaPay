@@ -13,7 +13,7 @@ public class ContaService(IContaRepository repo)
     {
         if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(senha)) return false;
 
-        if(!_repo.ExisteCpf(cpf)) return false;
+        if(_repo.ExisteCpf(cpf)) return false;
 
         var conta = new Conta(nome, cpf, senha);
 
