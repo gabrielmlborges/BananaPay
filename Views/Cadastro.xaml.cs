@@ -11,8 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BananaPay.Data;
 using BananaPay.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BananaPay.View
 {
@@ -21,16 +21,17 @@ namespace BananaPay.View
     /// </summary>
     public partial class Cadastro : Window
     {
-        private readonly ContaService _service = new(new BananaPayContext());
+        private readonly ContaService _service;
 
-        public Cadastro()
+        public Cadastro(ContaService service)
         {
             InitializeComponent();
+            _service = service;
         }
 
         private void BotaoIrLogin_Click(object sender, RoutedEventArgs e)
         {
-            Login login = new();
+            var login = App.ServiceProvider.GetRequiredService<Login>();
             login.Show();
             Close();
         }

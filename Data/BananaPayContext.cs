@@ -10,14 +10,7 @@ public class BananaPayContext : DbContext
     public DbSet<Deposito> Depositos { get; set; }
     public DbSet<Transferencia> Transferencias { get; set; }
 
-    public string DbPath { get; }
-
-    public BananaPayContext()
-    {
-        var folder = Environment.SpecialFolder.LocalApplicationData;
-        var path = Environment.GetFolderPath(folder);
-        DbPath = System.IO.Path.Join(path, "BananaPay.db");
-    }
+    public BananaPayContext(DbContextOptions<BananaPayContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,8 +18,4 @@ public class BananaPayContext : DbContext
             .HasIndex(c => c.CpfDono)
             .IsUnique();
     }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Data Source={DbPath}");
 }
-

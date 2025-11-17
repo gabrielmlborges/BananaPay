@@ -1,26 +1,25 @@
-using BananaPay.Data;
+using BananaPay.Repository;
 using BananaPay.Models;
 
 namespace BananaPay.Services;
 
-public class ContaService(BananaPayContext context)
+public class ContaService(IContaRepository repo)
 {
     // ✅ Dependency Injection (SOLID: D)
-    private readonly BananaPayContext _context = context;
+    private readonly IContaRepository _repo = repo;
 
     // ✅ Single Responsibility (SOLID: S)
     public bool CriarConta(string nome, string cpf, string senha)
     {
         if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(senha)) return false;
 
-        bool jaExiste = _context.Contas.Any(c => c.CpfDono == cpf);
-        if (jaExiste) return false;
+        if(!_repo.ExisteCpf(cpf)) return false;
 
         var conta = new Conta(nome, cpf, senha);
 
-        _context.Contas.Add(conta);
+        _repo.CriarConta(conta);
 
-        _context.SaveChanges();
+        _repo.Commit();
 
         return true;
     }
@@ -29,52 +28,46 @@ public class ContaService(BananaPayContext context)
     {
         if (string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(senha)) return false;
 
-        var cliente = _context.Contas.FirstOrDefault(c => c.CpfDono == cpf);
+        var cliente = _repo.GetByCpf(cpf);
 
         return cliente != null && cliente.Senha == senha;
     }
 
     public void Sacar(decimal valor, string cpf)
     {
-        var conta = _context.Contas.FirstOrDefault(c => c.CpfDono == cpf);
+        var conta = _repo.GetByCpf(cpf);
         
         if (conta == null) return;
 
-        conta.Debitar(valor);
+        conta.Debitar(valor, new Saque(valor, conta.ContaId));
 
-        conta.Registrar(new Saque(valor, conta.ContaId));
-
-        _context.SaveChanges();
+        _repo.Commit();
 
     }
 
     public void Depositar(decimal valor, string cpf)
     {
-        var conta = _context.Contas.FirstOrDefault(c => c.CpfDono == cpf);
+        var conta = _repo.GetByCpf(cpf);
 
         if (conta == null) return;
 
-        conta.Creditar(valor);
+        conta.Creditar(valor, new Deposito(valor, conta.ContaId));
 
-        conta.Registrar(new Deposito(valor, conta.ContaId));
-
-        _context.SaveChanges();
+        _repo.Commit();
     }
 
     public void Transferir(decimal valor, string cpfDono, string cpfDestino)
     {
-        var contaDono = _context.Contas.FirstOrDefault(c => c.CpfDono == cpfDono);
-        var contaDestino = _context.Contas.FirstOrDefault(c => c.CpfDono == cpfDestino);
+        var contaDono = _repo.GetByCpf(cpfDono);
+        var contaDestino = _repo.GetByCpf(cpfDestino);
 
         if (contaDono == null) return;
         if (contaDestino == null) return;
 
-        contaDono.Debitar(valor);
-        contaDestino.Creditar(valor);
+        contaDono.Debitar(valor, new Transferencia(valor, contaDono.ContaId, contaDestino.ContaId));
+        contaDestino.Creditar(valor, new Transferencia(valor, contaDestino.ContaId, contaDono.ContaId));
 
-        contaDono.Registrar(new Transferencia(valor, contaDono.ContaId, contaDestino.ContaId));
-
-        _context.SaveChanges();
+        _repo.Commit();
 
     }
 }

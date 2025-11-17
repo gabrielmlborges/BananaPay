@@ -18,22 +18,25 @@ public class Conta
         Senha = senha;
     }
 
-    public bool Creditar(decimal valor)
+    public bool Creditar(decimal valor, Transacao t)
     {
         if (valor <= 0) return false;
 
         Saldo += valor;
+
+        Transacoes.Add(t);
+
         return true;
     }
 
-    public bool Debitar(decimal valor)
+    public bool Debitar(decimal valor, Transacao t)
     {
         if (valor <= 0 || Saldo < valor) return false;
 
         Saldo -= valor;
 
+        Transacoes.Add(t);
+
         return true;
     }
-
-    public void Registrar(Transacao t) => Transacoes.Add(t);
 }

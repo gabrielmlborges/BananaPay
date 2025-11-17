@@ -11,6 +11,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BananaPay.Data;
 using BananaPay.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BananaPay
 {
@@ -19,15 +20,16 @@ namespace BananaPay
     /// </summary>
     public partial class Login : Window
     {
-        private readonly ContaService _service = new(new BananaPayContext());
-        public Login()
+        private readonly ContaService _service;
+        public Login(ContaService service)
         {
             InitializeComponent();
+            _service = service;
         }
 
         private void IrCadastro_Click(object sender, RoutedEventArgs e)
         {
-            Cadastro cadastro = new();
+            var cadastro = App.ServiceProvider.GetRequiredService<Cadastro>();
             cadastro.Show();
             Close();
         }
