@@ -38,7 +38,7 @@ namespace BananaPay.View
 
         private void BotaoCadastrar_Click(object sender, RoutedEventArgs e)
         {
-            string nome = CaixaEmailCadastro.Text;
+            string nome = CaixaNomeCadastro.Text;
             string cpf = CaixaCPFCadastro.Text;
             string senha = CaixaSenhaCadastro.Text;
             bool deuCerto = _service.CriarConta(nome, cpf, senha);
