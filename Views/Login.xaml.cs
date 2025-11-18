@@ -36,7 +36,7 @@ namespace BananaPay
 
         private void BotaoLogin_Click(object sender, RoutedEventArgs e)
         {
-            string cpf = CaixaLoginEmail.Text;
+            string cpf = CaixaLoginCPF.Text;
             string senha = CaixaLoginSenha.Text;
             bool deuCerto = _service.VerificarLogin(cpf, senha);
             if (deuCerto)
