@@ -70,10 +70,13 @@
         <Label Content="Logar-se" Margin="627,124,0,0" RenderTransformOrigin="0.28,0.492" Foreground="White" FontSize="24" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
         <Label Content="Ja possui uma conta com a gente?" Margin="566,188,0,0" RenderTransformOrigin="0.28,0.492" Foreground="White" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
         <Label Content="Crie sua conta" HorizontalAlignment="Left" Height="42" Margin="188,65,0,0" VerticalAlignment="Top" Width="178" Foreground="#FF289A5E" FontWeight="Bold" FontSize="24"/>
-        <TextBox x:Name="CaixaCPFCadastro" HorizontalAlignment="Left" Height="33" Margin="178,124,0,0" TextWrapping="Wrap" Text="CPF" VerticalAlignment="Top" Width="198"/>
-        <TextBox x:Name="CaixaEmailCadastro" HorizontalAlignment="Left" Height="33" Margin="178,169,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="198"/>
-        <TextBox x:Name="CaixaSenhaCadastro" HorizontalAlignment="Left" Height="33" Margin="178,217,0,0" TextWrapping="Wrap" Text="Senha" VerticalAlignment="Top" Width="198"/>
+        <TextBox x:Name="CaixaCPFCadastro" HorizontalAlignment="Left" Height="33" Margin="178,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"/>
+        <TextBox x:Name="CaixaNomeCadastro" HorizontalAlignment="Left" Height="33" Margin="178,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"/>
+        <TextBox x:Name="CaixaSenhaCadastro" HorizontalAlignment="Left" Height="33" Margin="178,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"/>
         <Button Content="Cadastrar" HorizontalAlignment="Left" Height="49" Margin="211,289,0,0" VerticalAlignment="Top" Width="132" Style="{DynamicResource BotaoArrendondado}" Background="#FF289A5E" Foreground="White" BorderBrush="White" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Nome:" HorizontalAlignment="Left" Height="26" Margin="130,172,0,0" VerticalAlignment="Top" Width="56" FontSize="14"/>
+        <Label Content="CPF:" HorizontalAlignment="Left" Height="26" Margin="146,125,0,0" VerticalAlignment="Top" Width="46" FontSize="14"/>
+        <Label Content="Senha:" HorizontalAlignment="Left" Height="26" Margin="130,217,0,0" VerticalAlignment="Top" Width="52" FontSize="14"/>
 
     </Grid>
 </Window>

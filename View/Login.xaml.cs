@@ -28,5 +28,12 @@ namespace BananaPay
             cadastro.Show();
             this.Close();
         }
+
+        private void BotaoLogin_Click(object sender, RoutedEventArgs e)
+        {
+            TelaUsuario telaUsuario = new TelaUsuario();
+            telaUsuario.Show();
+            this.Close();
+        }
     }
 }

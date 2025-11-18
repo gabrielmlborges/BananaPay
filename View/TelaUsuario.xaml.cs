@@ -23,5 +23,15 @@ namespace BananaPay.View
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void BotaoSacar_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
