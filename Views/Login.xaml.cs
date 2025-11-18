@@ -41,11 +41,10 @@ namespace BananaPay
             bool deuCerto = _service.VerificarLogin(cpf, senha);
             if (deuCerto)
             {
-                MessageBox.Show(
-                        "Login realizado",
-                        "Login",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information);
+                var ContaService = App.ServiceProvider.GetRequiredService<ContaService>();
+                var tela = new TelaUsuario(ContaService, cpf);
+                tela.Show();
+                Close();
             } else
             {
                 MessageBox.Show(
