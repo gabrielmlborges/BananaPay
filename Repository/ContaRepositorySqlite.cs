@@ -26,5 +26,11 @@ namespace BananaPay.Repository
         public void CriarConta(Conta c) {
             _context.Add(c);
         }
+
+        public List<Transacao>GetTransacoes(string cpf)
+        {
+            var result = GetByCpf(cpf).Transacoes.ToList();
+            return result;
+        }
     }
 }

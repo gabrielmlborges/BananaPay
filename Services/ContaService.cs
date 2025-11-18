@@ -64,8 +64,8 @@ public class ContaService(IContaRepository repo)
         if (contaDono == null) return;
         if (contaDestino == null) return;
 
-        contaDono.Debitar(valor, new Transferencia(valor, contaDono.ContaId, contaDestino.ContaId));
-        contaDestino.Creditar(valor, new Transferencia(valor, contaDestino.ContaId, contaDono.ContaId));
+        contaDono.Debitar(valor, new Transferencia(valor, contaDono.ContaId, $"Transferido para {contaDestino.CpfDono}", contaDestino.ContaId));
+        contaDestino.Creditar(valor, new Transferencia(valor, contaDestino.ContaId, $"Recebido de {contaDono.CpfDono}", contaDono.ContaId));
 
         _repo.Commit();
 
