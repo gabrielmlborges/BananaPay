@@ -7,7 +7,6 @@ namespace BananaPay.Repository
         Conta GetByCpf(string cpf);
         bool ExisteCpf(string cpf);
         void CriarConta(Conta c);
-        List<Transacao> GetTransacoes(string cpf);
         void Commit();
     }
 }
