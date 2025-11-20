@@ -29,5 +29,25 @@ namespace BananaPay.View
             _service = service;
             _id = id;
         }
+
+        private void BotaoSacar_Click(object sender, RoutedEventArgs e)
+        {
+            int val = int.Parse(ValorSacar.Text);
+            _service.Sacar(val, _id);
+        }
+
+        private void BotaoDeposito_Click(object sender, RoutedEventArgs e)
+        {
+            int val = int.Parse(ValorDeposito.Text);
+            _service.Depositar(val, _id);
+        }
+
+        private void BotaoTransferencia_Click(object sender, RoutedEventArgs e)
+        {
+            int val = int.Parse(ValorTransferir.Text);
+            string destino = CPFTransferir.Text;
+
+            _service.Transferir(val, _id, destino);
+        }
     }
 }

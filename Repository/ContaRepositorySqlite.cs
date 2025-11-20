@@ -13,6 +13,11 @@ namespace BananaPay.Repository
             return c;
         }
 
+        public Conta GetById(int? id)
+        {
+            return _context.Contas.FirstOrDefault(c => c.ContaId == id);
+        }
+
         public bool ExisteCpf(string cpf)
         {
             return _context.Contas.Any(c => c.CpfDono == cpf);

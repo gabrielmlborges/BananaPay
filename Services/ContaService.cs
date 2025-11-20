@@ -35,9 +35,9 @@ public class ContaService(IContaRepository repo)
         return conta.ContaId;
     }
 
-    public void Sacar(decimal valor, string cpf)
+    public void Sacar(decimal valor, int? id)
     {
-        var conta = _repo.GetByCpf(cpf);
+        var conta = _repo.GetById(id);
         
         if (conta == null) return;
 
@@ -47,9 +47,9 @@ public class ContaService(IContaRepository repo)
 
     }
 
-    public void Depositar(decimal valor, string cpf)
+    public void Depositar(decimal valor, int? id)
     {
-        var conta = _repo.GetByCpf(cpf);
+        var conta = _repo.GetById(id);
 
         if (conta == null) return;
 
@@ -58,9 +58,9 @@ public class ContaService(IContaRepository repo)
         _repo.Commit();
     }
 
-    public void Transferir(decimal valor, string cpfDono, string cpfDestino)
+    public void Transferir(decimal valor, int? idDono, string cpfDestino)
     {
-        var contaDono = _repo.GetByCpf(cpfDono);
+        var contaDono = _repo.GetById(idDono);
         var contaDestino = _repo.GetByCpf(cpfDestino);
 
         if (contaDono == null) return;
