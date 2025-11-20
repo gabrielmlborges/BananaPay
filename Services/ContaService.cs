@@ -24,13 +24,15 @@ public class ContaService(IContaRepository repo)
         return true;
     }
 
-    public bool VerificarLogin(string cpf, string senha)
+    public int? VerificarLogin(string cpf, string senha)
     {
-        if (string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(senha)) return false;
+        if (string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(senha)) return null;
 
-        var cliente = _repo.GetByCpf(cpf);
+        var conta = _repo.GetByCpf(cpf);
 
-        return cliente != null && cliente.Senha == senha;
+        if (conta == null || conta.Senha != senha) return null;
+
+        return conta.ContaId;
     }
 
     public void Sacar(decimal valor, string cpf)

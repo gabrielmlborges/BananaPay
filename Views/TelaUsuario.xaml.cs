@@ -21,13 +21,13 @@ namespace BananaPay.View
     /// </summary>
     public partial class TelaUsuario : Window
     {
-        private readonly string _cpf;
+        private readonly int? _id;
         private readonly ContaService _service;
-        public TelaUsuario(ContaService service, string cpf)
+        public TelaUsuario(ContaService service, int? id)
         {
             InitializeComponent();
             _service = service;
-            _cpf = cpf;
+            _id = id;
         }
     }
 }

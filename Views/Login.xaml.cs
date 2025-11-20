@@ -38,17 +38,17 @@ namespace BananaPay
         {
             string cpf = CaixaLoginCPF.Text;
             string senha = CaixaLoginSenha.Text;
-            bool deuCerto = _service.VerificarLogin(cpf, senha);
-            if (deuCerto)
+            int? id = _service.VerificarLogin(cpf, senha);
+            if (id.HasValue)
             {
                 var ContaService = App.ServiceProvider.GetRequiredService<ContaService>();
-                var tela = new TelaUsuario(ContaService, cpf);
+                var tela = new TelaUsuario(ContaService, id);
                 tela.Show();
                 Close();
             } else
             {
                 MessageBox.Show(
-                        "Erro ao fazer login",
+                        "CPF ou senha inválidos",
                         "Login",
                         MessageBoxButton.OK,
                         MessageBoxImage.Information);

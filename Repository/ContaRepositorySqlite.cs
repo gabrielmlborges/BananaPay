@@ -26,5 +26,21 @@ namespace BananaPay.Repository
         public void CriarConta(Conta c) {
             _context.Add(c);
         }
+
+        public List<Transferencia> GetAllTransferencias(int id)
+        {
+            return _context.Transferencias.Where(t => t.ContaId == id).ToList();
+        }
+
+        public List<Saque> GetAllSaques(int id)
+        {
+            return _context.Saques.Where(t => t.ContaId == id).ToList();
+        }
+
+        public List<Deposito> GetAllDepositos(int id)
+        {
+            return _context.Depositos.Where(t => t.ContaId == id).ToList();
+        }
+
     }
 }
