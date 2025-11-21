@@ -2,10 +2,9 @@ using BananaPay.Repository;
 using BananaPay.Models;
 
 namespace BananaPay.Services;
-
-public class ContaService(IContaRepository repo)
+public class ContaService(IContaRepository repo) : IContaService
 {
-    // ✅ Dependency Injection (SOLID: D)
+    // ✅ Dependency Inversion (SOLID: D)
     private readonly IContaRepository _repo = repo;
 
     // ✅ Single Responsibility (SOLID: S)
@@ -47,6 +46,7 @@ public class ContaService(IContaRepository repo)
 
     }
 
+    // Clean Code: Métodos simples
     public void Depositar(decimal valor, int? id)
     {
         var conta = _repo.GetById(id);
@@ -58,6 +58,7 @@ public class ContaService(IContaRepository repo)
         _repo.Commit();
     }
 
+    // Clean Code: Nomes descritivos das variáveis
     public void Transferir(decimal valor, int? idDono, string cpfDestino)
     {
         var contaDono = _repo.GetById(idDono);

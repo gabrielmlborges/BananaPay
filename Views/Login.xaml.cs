@@ -1,15 +1,5 @@
 using BananaPay.View;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using BananaPay.Data;
 using BananaPay.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,8 +10,8 @@ namespace BananaPay
     /// </summary>
     public partial class Login : Window
     {
-        private readonly ContaService _service;
-        public Login(ContaService service)
+        private readonly IContaService _service;
+        public Login(IContaService service)
         {
             InitializeComponent();
             _service = service;
@@ -41,7 +31,7 @@ namespace BananaPay
             int? id = _service.VerificarLogin(cpf, senha);
             if (id.HasValue)
             {
-                var ContaService = App.ServiceProvider.GetRequiredService<ContaService>();
+                var ContaService = App.ServiceProvider.GetRequiredService<IContaService>();
                 var tela = new TelaUsuario(ContaService, id);
                 tela.Show();
                 Close();

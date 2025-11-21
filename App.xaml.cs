@@ -1,14 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
-using System.Data;
 using System.Windows;
-using BananaPay.Models;
 using BananaPay.Data;
 using BananaPay.Repository;
 using BananaPay.View;
 using BananaPay.Services;
-using System.IO;        // ← Path
-using Microsoft.EntityFrameworkCore; // ← UseSqlite
+using System.IO;
+using Microsoft.EntityFrameworkCore;
 
 namespace BananaPay
 {
@@ -33,7 +30,7 @@ namespace BananaPay
             services.AddScoped<IContaRepository, ContaRepositorySqlite>();
 
             // Services
-            services.AddScoped<ContaService>();
+            services.AddScoped<IContaService, ContaService>();
 
             // Janelas
             services.AddTransient<Login>();
