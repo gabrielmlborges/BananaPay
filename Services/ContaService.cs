@@ -66,7 +66,7 @@ public class ContaService(IContaRepository repo)
         if (contaDono == null) return;
         if (contaDestino == null) return;
 
-        contaDono.Debitar(valor, new Transferencia(valor, contaDono.ContaId, contaDestino.ContaId));
+        contaDono.Debitar(valor, new Transferencia(-valor, contaDono.ContaId, contaDestino.ContaId));
         contaDestino.Creditar(valor, new Transferencia(valor, contaDestino.ContaId, contaDono.ContaId));
 
         _repo.Commit();
@@ -78,4 +78,23 @@ public class ContaService(IContaRepository repo)
         return _repo.GetSaldo(id);
     }
 
+    public List<Saque> atualizarSaques(int? id)
+    {
+        return _repo.GetAllSaques(id);
+    }
+
+    public List<Deposito> atualizarDepositos(int? id)
+    {
+        return _repo.GetAllDepositos(id);
+    }
+
+    public List<Transferencia> atualizarTransferencias(int? id)
+    {
+        return _repo.GetAllTransferencias(id);
+    }
+
+    public string PegarNomeDeDestino(int? id)
+    {
+        return _repo.GetName(id);
+    }
 }
