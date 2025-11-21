@@ -1,5 +1,8 @@
+using System.Data;
 using BananaPay.Data;
 using BananaPay.Models;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 
 namespace BananaPay.Repository
 {
@@ -57,6 +60,24 @@ namespace BananaPay.Repository
         {
             var conta = _context.Contas.FirstOrDefault(t => t.ContaId == id);
             return conta.NomeDono;
+        }
+
+        //FUNCIONALIDADE QUE UTILIZA MANIPULAÇÃO SQL
+        public List<string> ObterTiposTransacaoSqlRaw(int contaId)
+        {
+            var conn = _context.Database.GetDbConnection();
+            if (conn.State == ConnectionState.Closed) conn.Open();
+
+            using var cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT DISTINCT Discriminator FROM Transacoes WHERE ContaId = @id;";
+            cmd.Parameters.Add(new SqliteParameter("@id", contaId));
+
+            var tipos = new List<string>();
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+                tipos.Add(reader.GetString(0));
+
+            return tipos;
         }
     }
 }
