@@ -18,6 +18,12 @@ namespace BananaPay.Repository
             return _context.Contas.FirstOrDefault(c => c.ContaId == id);
         }
 
+        public decimal GetSaldo(int? id)
+        {
+            var conta = _context.Contas.FirstOrDefault(c => c.ContaId == id);
+            return conta.Saldo;
+        }
+
         public bool ExisteCpf(string cpf)
         {
             return _context.Contas.Any(c => c.CpfDono == cpf);

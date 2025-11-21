@@ -72,4 +72,10 @@ public class ContaService(IContaRepository repo)
         _repo.Commit();
 
     }
+
+    public decimal AtualizarSaldo(int? id)
+    {
+        return _repo.GetSaldo(id);
+    }
+
 }

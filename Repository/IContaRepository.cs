@@ -6,8 +6,10 @@ namespace BananaPay.Repository
     {
         Conta GetByCpf(string cpf);
         Conta GetById(int? id);
+        decimal GetSaldo(int? id);
         bool ExisteCpf(string cpf);
         void CriarConta(Conta c);
         void Commit();
+        List<Saque> GetAllSaques();
     }
 }

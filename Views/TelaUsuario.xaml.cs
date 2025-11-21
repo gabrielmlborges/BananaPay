@@ -12,7 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BananaPay.Services;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.ObjectModel;
+using BananaPay.Models;
 
 namespace BananaPay.View
 {
@@ -23,23 +26,37 @@ namespace BananaPay.View
     {
         private readonly int? _id;
         private readonly ContaService _service;
+        public ObservableCollection<Saque> aaa { get; set; }
         public TelaUsuario(ContaService service, int? id)
         {
             InitializeComponent();
             _service = service;
             _id = id;
+            attSaldo();
+            aaa = new ObservableCollection<Saque>();
+            DataContext = this;
+        }
+        private void attSaldo()
+        {
+            ValorSaldo.Content = _service.AtualizarSaldo(_id);
         }
 
         private void BotaoSacar_Click(object sender, RoutedEventArgs e)
         {
             int val = int.Parse(ValorSacar.Text);
             _service.Sacar(val, _id);
+            MessageBox.Show("Saque realizado!");
+            attSaldo();
+
         }
 
         private void BotaoDeposito_Click(object sender, RoutedEventArgs e)
         {
             int val = int.Parse(ValorDeposito.Text);
             _service.Depositar(val, _id);
+            MessageBox.Show("Deposito realizado!");
+            attSaldo();
+
         }
 
         private void BotaoTransferencia_Click(object sender, RoutedEventArgs e)
@@ -48,6 +65,15 @@ namespace BananaPay.View
             string destino = CPFTransferir.Text;
 
             _service.Transferir(val, _id, destino);
+            MessageBox.Show("Transferência realizada!");
+            attSaldo();
+        }
+
+        private void BotaoSair_Click(object sender, RoutedEventArgs e)
+        {
+            var login = App.ServiceProvider.GetRequiredService<Login>();
+            login.Show();
+            Close();
         }
     }
 }
